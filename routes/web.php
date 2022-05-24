@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BiodataController;
 use App\Http\Controllers\DashboardController;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
@@ -20,6 +21,11 @@ Route::get('/', function () {
     DashboardController::class;
     return view('welcome');
 });
+
+Route::resource('biodata', BiodataController::class);
+
+Route::get('biodata/ubah/{id}', [BiodataController::class, 'ubah'])->name('biodata.ubah');
+Route::put('biodata/ganti/{id}', [BiodataController::class, 'ganti'])->name('biodata.ganti');
 
 Route::get('users', function () {
     // $users = DB::table('users')->get(); ==> db query builder
